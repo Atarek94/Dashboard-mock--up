@@ -1,0 +1,196 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .dash { background: #f7f7f5; font-family: var(--font-sans, sans-serif); padding: 0; }
+  .header { background: #fff; border-bottom: 1px solid #e8e8e8; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .logo-text { font-size: 18px; letter-spacing: 7px; color: #3a3a3a; font-weight: 400; }
+  .logo-o { color: #3a9e3f; }
+  .logo-sub { font-size: 9px; letter-spacing: 2px; color: #aaa; margin-top: 3px; text-transform: uppercase; }
+  .header-meta { font-size: 11px; color: #aaa; text-align: right; }
+  .header-meta strong { color: #555; font-weight: 500; display: block; font-size: 12px; }
+  .body { padding: 20px 24px; }
+  .section-label { font-size: 10px; letter-spacing: 2px; color: #aaa; text-transform: uppercase; margin-bottom: 12px; margin-top: 4px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .kpi { background: #fff; border: 1px solid #ebebeb; border-radius: 10px; padding: 14px 16px; border-top: 3px solid #3a9e3f; }
+  .kpi.alert { border-top-color: #d94f4f; }
+  .kpi-label { font-size: 11px; color: #aaa; margin-bottom: 6px; }
+  .kpi-value { font-size: 28px; font-weight: 500; color: #1a1a1a; }
+  .kpi-value.red { color: #d94f4f; }
+  .kpi-sub { font-size: 11px; color: #3a9e3f; margin-top: 4px; }
+  .kpi-sub.red { color: #d94f4f; }
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .chart-card { background: #fff; border: 1px solid #ebebeb; border-radius: 10px; padding: 18px; }
+  .chart-title { font-size: 11px; color: #aaa; margin-bottom: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .unit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .unit-card { background: #f7f7f5; border: 1px solid #ebebeb; border-radius: 8px; padding: 12px 14px; }
+  .unit-name { font-size: 10px; color: #aaa; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .unit-count { font-size: 24px; font-weight: 500; color: #1a1a1a; }
+  .unit-bar { height: 3px; border-radius: 2px; margin-top: 8px; background: #3a9e3f; }
+  .src-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 12px; }
+  .src-label { width: 110px; color: #777; flex-shrink: 0; }
+  .src-bar-bg { flex: 1; background: #f0f0ee; border-radius: 3px; height: 7px; }
+  .src-bar { height: 7px; border-radius: 3px; background: #3a9e3f; }
+  .src-val { width: 20px; color: #555; text-align: right; font-weight: 500; font-size: 11px; }
+  .stage-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 12px; }
+  .stage-label { width: 110px; color: #777; flex-shrink: 0; }
+  .stage-bar-bg { flex: 1; background: #f0f0ee; border-radius: 3px; height: 7px; }
+  .stage-bar { height: 7px; border-radius: 3px; }
+  .stage-val { width: 20px; color: #555; text-align: right; font-weight: 500; font-size: 11px; }
+  .score-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px; }
+  .score-name { font-size: 11px; color: #777; }
+  .stars { font-size: 12px; letter-spacing: 1px; }
+  .score-num { font-size: 11px; color: #444; font-weight: 500; width: 20px; text-align: right; }
+  .exceptions { background: #fff; border: 1px solid #ebebeb; border-radius: 10px; padding: 18px; margin-bottom: 4px; }
+  .exc-table { width: 100%; font-size: 12px; border-collapse: collapse; }
+  .exc-table th { color: #aaa; font-weight: 400; text-align: left; padding: 6px 10px; border-bottom: 1px solid #f0f0f0; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .exc-table td { color: #555; padding: 10px 10px; border-bottom: 1px solid #f7f7f5; }
+  .exc-table tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 4px; font-size: 10px; font-weight: 500; letter-spacing: 0.3px; }
+  .badge-red { background: #fdf0f0; color: #c03030; border: 1px solid #f5c5c5; }
+  .badge-yellow { background: #fdf8ee; color: #9a7020; border: 1px solid #f0dfa0; }
+  .badge-green { background: #f0f8f0; color: #2a7a2a; border: 1px solid #b0ddb0; }
+  .divider { height: 1px; background: #ebebeb; margin: 20px 0; }
+</style>
+
+<div class="dash">
+  <div class="header">
+    <div>
+      <div class="logo-text">BL<span class="logo-o">O</span><span class="logo-o">O</span>M</div>
+      <div class="logo-sub">Your beauty secret &nbsp;·&nbsp; CRM pipeline dashboard</div>
+    </div>
+    <div class="header-meta">
+      <strong>Bloom Planet Group</strong>
+      Week of 09 June 2026 &nbsp;·&nbsp; All units
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="section-label">Pipeline summary</div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Total leads</div>
+        <div class="kpi-value">10</div>
+        <div class="kpi-sub">All units combined</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Open leads</div>
+        <div class="kpi-value">10</div>
+        <div class="kpi-sub">Active in pipeline</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Avg lead score</div>
+        <div class="kpi-value">4.1</div>
+        <div class="kpi-sub">Out of 5.0</div>
+      </div>
+      <div class="kpi alert">
+        <div class="kpi-label">Overdue follow-ups</div>
+        <div class="kpi-value red">1</div>
+        <div class="kpi-sub red">Needs immediate action</div>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Leads by business unit</div>
+        <div class="unit-grid">
+          <div class="unit-card">
+            <div class="unit-name">O-Laboratory</div>
+            <div class="unit-count">4</div>
+            <div class="unit-bar" style="width:100%;"></div>
+          </div>
+          <div class="unit-card">
+            <div class="unit-name">BLOOM</div>
+            <div class="unit-count">3</div>
+            <div class="unit-bar" style="width:75%;"></div>
+          </div>
+          <div class="unit-card">
+            <div class="unit-name">Bloom Arena</div>
+            <div class="unit-count">2</div>
+            <div class="unit-bar" style="width:50%;"></div>
+          </div>
+          <div class="unit-card">
+            <div class="unit-name">Bloom Egypt</div>
+            <div class="unit-count">1</div>
+            <div class="unit-bar" style="width:25%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Leads by source</div>
+        <div style="margin-top:4px;">
+          <div class="src-row"><div class="src-label">LinkedIn</div><div class="src-bar-bg"><div class="src-bar" style="width:30%;"></div></div><div class="src-val">3</div></div>
+          <div class="src-row"><div class="src-label">Exhibition</div><div class="src-bar-bg"><div class="src-bar" style="width:30%;"></div></div><div class="src-val">3</div></div>
+          <div class="src-row"><div class="src-label">Direct enquiry</div><div class="src-bar-bg"><div class="src-bar" style="width:30%;"></div></div><div class="src-val">3</div></div>
+          <div class="src-row"><div class="src-label">Instagram</div><div class="src-bar-bg"><div class="src-bar" style="width:10%;"></div></div><div class="src-val">1</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Pipeline stage distribution</div>
+        <div style="margin-top:4px;">
+          <div class="stage-row"><div class="stage-label">New</div><div class="stage-bar-bg"><div class="stage-bar" style="width:100%; background:#3a9e3f;"></div></div><div class="stage-val">10</div></div>
+          <div class="stage-row"><div class="stage-label">Contacted</div><div class="stage-bar-bg"><div class="stage-bar" style="width:0%; background:#3a9e3f;"></div></div><div class="stage-val">0</div></div>
+          <div class="stage-row"><div class="stage-label">Qualified</div><div class="stage-bar-bg"><div class="stage-bar" style="width:0%; background:#3a9e3f;"></div></div><div class="stage-val">0</div></div>
+          <div class="stage-row"><div class="stage-label">Proposal sent</div><div class="stage-bar-bg"><div class="stage-bar" style="width:0%; background:#c9a035;"></div></div><div class="stage-val">0</div></div>
+          <div class="stage-row"><div class="stage-label">Negotiation</div><div class="stage-bar-bg"><div class="stage-bar" style="width:0%; background:#d94f4f;"></div></div><div class="stage-val">0</div></div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Lead score by record</div>
+        <div style="margin-top:4px;">
+          <div class="score-row"><div class="score-name">B-01 · O-Lab OEM</div><div class="stars" style="color:#3a9e3f;">★★★★★</div><div class="score-num">5</div></div>
+          <div class="score-row"><div class="score-name">B-05 · BLOOM dist.</div><div class="stars" style="color:#3a9e3f;">★★★★★</div><div class="score-num">5</div></div>
+          <div class="score-row"><div class="score-name">B-06 · O-Lab private label</div><div class="stars" style="color:#3a9e3f;">★★★★★</div><div class="score-num">5</div></div>
+          <div class="score-row"><div class="score-name">B-10 · O-Lab raw material</div><div class="stars" style="color:#3a9e3f;">★★★★★</div><div class="score-num">5</div></div>
+          <div class="score-row"><div class="score-name">B-02 · BLOOM product</div><div class="stars" style="color:#c9a035;">★★★★☆</div><div class="score-num">4</div></div>
+          <div class="score-row"><div class="score-name">B-04 · Egypt marketing</div><div class="stars" style="color:#c9a035;">★★★★☆</div><div class="score-num">4</div></div>
+          <div class="score-row"><div class="score-name">B-09 · BLOOM samples</div><div class="stars" style="color:#c9a035;">★★★★☆</div><div class="score-num">4</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Follow-up exceptions — needs action</div>
+    <div class="exceptions">
+      <table class="exc-table">
+        <thead>
+          <tr>
+            <th>Lead ID</th>
+            <th>Owner</th>
+            <th>Next action</th>
+            <th>Due date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:500; color:#333;">B-05</td>
+            <td>Regional Sales Manager</td>
+            <td>Distributor qualification call</td>
+            <td>09 Jun 2026</td>
+            <td><span class="badge badge-red">Overdue</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:500; color:#333;">B-03</td>
+            <td>Arena Community Manager</td>
+            <td>Introductory call and onboarding</td>
+            <td>12 Jun 2026</td>
+            <td><span class="badge badge-yellow">Due soon</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:500; color:#333;">B-08</td>
+            <td>O-Lab BD Manager</td>
+            <td>Regulatory discovery meeting</td>
+            <td>15 Jun 2026</td>
+            <td><span class="badge badge-green">On track</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
